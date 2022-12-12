@@ -1,0 +1,3 @@
+[submodule "libzim"]
+	path = libzim
+	url = https://github.com/openzim/libzim.git
