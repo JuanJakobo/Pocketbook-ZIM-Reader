@@ -13,13 +13,18 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_library(zim STATIC IMPORTED)
 set_target_properties(zim PROPERTIES
-IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libzim/build/src/libzim.a"
-#INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libzim/include/zim"
+    IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libzim/build/src/libzim.a"
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libzim/include/zim"
 )
 
 add_library(zstd STATIC IMPORTED)
 set_target_properties(zstd PROPERTIES
   IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libzim/build/subprojects/zstd-1.4.5/build/meson/lib/libzstd.a"
+)
+
+add_library(xapian STATIC IMPORTED)
+set_target_properties(xapian PROPERTIES
+IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/xapian-core-1.4.18/.libs/libxapian.a"
 )
 
 set(CMAKE_FIND_ROOT_PATH "${TOOLCHAIN_PATH}/usr/arm-obreey-linux-gnueabi/sysroot/")
@@ -74,6 +79,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/libzim/build/include/zim
 )
 
-target_link_libraries(ZIM-Reader.app inkview freetype stdc++fs zim zstd pthread lzma)
+target_link_libraries(ZIM-Reader.app inkview freetype stdc++fs zim zstd pthread lzma z icuuc icui18n rt uuid xapian)
 
 INSTALL (TARGETS ZIM-Reader.app)
