@@ -13,8 +13,9 @@
 #include <memory>
 
 std::unique_ptr<EventHandler> events = nullptr;
+
 /**
-* Handles events and redirects them
+* Handles events and redirects it
 *
 * @param type event type
 * @param par1 first argument of the event
@@ -39,26 +40,31 @@ int Inkview_handler(int type, int par1, int par2)
                 break;
             }
         default:
-            //return events->eventDistributor(type, par1, par2);
+            return events->eventDistributor(type, par1, par2);
             break;
     }
     return 0;
 }
 
-int main()
+void drawStartscreen()
 {
-    OpenScreen();
-    SetOrientation(0);
-
-
-    //draw startscreen
     auto textHeight = ScreenHeight() / 30;
     auto startscreenFont = OpenFont("LiberationMono", textHeight, FONT_BOLD);
     SetFont(startscreenFont, BLACK);
     DrawTextRect(0, (ScreenHeight() / 3) * 2, ScreenWidth(), textHeight, "ZIM Reader", ALIGN_CENTER);
     CloseFont(startscreenFont);
     FullUpdate();
+}
 
+int main()
+{
+    OpenScreen();
+    SetOrientation(0);
+    SetPanelType(0);
+
+    drawStartscreen();
     InkViewMain(Inkview_handler);
     return 0;
 }
+
+
