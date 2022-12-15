@@ -68,14 +68,19 @@ list(APPEND PB_INCLUDE_DIRECTORIES "${TOOLCHAIN_PATH}/usr/arm-obreey-linux-gnuea
 set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp
 			${CMAKE_SOURCE_DIR}/src/handler/eventHandler.cpp
             ${CMAKE_SOURCE_DIR}/src/handler/searchHandler.cpp
+            ${CMAKE_SOURCE_DIR}/src/ui/listView.cpp
+            ${CMAKE_SOURCE_DIR}/src/ui/listViewEntry.cpp
+            ${CMAKE_SOURCE_DIR}/src/ui/searchViewEntry.cpp
 			${CMAKE_SOURCE_DIR}/src/util/log.cpp
 )
 
 add_executable(ZIM-Reader.app ${SOURCES})
 
 include_directories(
-    ${CMAKE_SOURCE_DIR}/src/handler/
-    ${CMAKE_SOURCE_DIR}/src/util/
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/src/handler
+    ${CMAKE_SOURCE_DIR}/src/ui
+    ${CMAKE_SOURCE_DIR}/src/util
     ${CMAKE_SOURCE_DIR}/libzim/include/zim
     ${CMAKE_SOURCE_DIR}/libzim/build/include/zim
 )
