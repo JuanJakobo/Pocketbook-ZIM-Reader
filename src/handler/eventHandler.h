@@ -18,12 +18,6 @@
 #include <string>
 #include <vector>
 
-//TODO constexpr=
-const std::string CONFIG_FOLDER = "/mnt/ext1/system/config/ZIM-Reader";
-const std::string STORAGE_FOLDER = "/mnt/ext1/ZIM-Reader/";
-//Doppelt
-const std::string ARTICLE_FOLDER = "/mnt/ext1/ZIM-Reader/A/";
-const std::string IMAGE_FOLDER = "/mnt/ext1/ZIM-Reader/I/";
 
 constexpr int KEYBOARD_STRING_LENGHT = 90;
 
