@@ -17,6 +17,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 
 constexpr int KEYBOARD_STRING_LENGHT = 90;
@@ -24,59 +25,39 @@ constexpr int KEYBOARD_STRING_LENGHT = 90;
 class EventHandler
 {
     public:
-        /**
-         * Defines fonds, sets global Event Handler and starts new content
-         */
         EventHandler();
-        /**
-         * Handles events and redirects them
-         *
-         * @param type event type
-         * @param par1 first argument of the event
-         * @param par2 second argument of the event
-         * @return int returns if the event was handled
-         */
+
         int eventDistributor(const int type, const int par1, const int par2);
 
     private:
         static std::unique_ptr<EventHandler> _eventHandlerStatic;
         std::vector<zim::Archive> _archives;
-        std::string _searchText;
+
+        std::string _searchText = "";
+
         irect _searchTextView;
-        irect _searchButton;
+        irect _filterButton;
+        irect _contentRect;
+
+        std::unique_ptr<SearchHandler> _search;
 
 
         void drawSearchScreen() const;
         void drawSearchTextView() const;
         void drawSearchButton() const;
+        void createConfigAndStorageFolders() const;
+        void addArchivesFromStoragePath();
 
-        /**
-         * Handles pointer Events
-         *
-         * @param type event type
-         * @param par1 first argument of the event
-         * @param par2 second argument of the event
-         * @return int returns if the event was handled
-         */
+        int keyHandler(const int type, const int par1, const int par2);
         int pointerHandler(const int type, const int par1, const int par2);
 
-        /**
-         * Handles key Events
-         *
-         * @param type event type
-         * @param par1 first argument of the event (is the key)
-         * @param par2 second argument of the event
-         * @return int returns if the event was handled
-         */
-        int keyHandler(const int type, const int par1, const int par2);
+        void openSearchTextKeyboardAndSearch();
+        static void setSearchTextToKeyboardInputStatic(char *keyboardText);
+        void setSearchTextToKeyboardInput(char *keyboardText);
 
-        void createConfigAndStorageFolders() const;
-        void addArchivesFromPath();
-        void openSearchDialogAndUpdateSearchTextView();
-        static void keyboardHandlerStatic(char *keyboardText);
-        void keyboardHandler(char *keyboardText);
-        void createHtml();
-        void searchForImagesInHtml();
+        void drawSearchResults() const;
+
+        std::string createHtmlFromEntry(const zim::Entry &entry) const;
 
 };
 #endif
