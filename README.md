@@ -1,6 +1,9 @@
 # Pocketbook ZIM-Reader
-ZIM-Reader for Pocketbook.
+Read ZIM-Files on Pocketbook.
 
+## Features
+* Search in multiple ZIM Files
+* Open Search results in ebook reader app (koreader is recommended)
 
 ### Screenshots
 
@@ -14,12 +17,11 @@ ZIM-Reader for Pocketbook.
 Download and unzip the file from releases and place the ZIM-Reader.app into the "applications" folder of your pocketbook.
 
 ## Usage
+Put zim Files into the ZIM-Reader folder on your Pocketbook. It is automatically created after the first start of the application.
 
-
-
+## Dependencies
 ZIM-Reader for Pocketbook uses and completely relies on following open source libraries:
-
-    ZimLib by openZIM project team
+* ZimLib by openZIM project team
 
 
 ## Disclamer
