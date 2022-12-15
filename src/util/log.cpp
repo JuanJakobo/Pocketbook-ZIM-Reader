@@ -24,7 +24,7 @@ void Log::writeErrorLog(const std::string &text)
 
 void Log::writeLog(const std::string &text)
 {
-    std::ofstream log(CONFIG_FOLDER + std::string("logfile.txt"), std::ios_base::app | std::ios_base::out);
+    std::ofstream log(CONFIG_FOLDER + std::string("/logfile.txt"), std::ios_base::app | std::ios_base::out);
 
     time_t rawtime;
     struct tm *timeinfo;

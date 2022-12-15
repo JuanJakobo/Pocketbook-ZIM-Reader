@@ -94,8 +94,8 @@ void EventHandler::createConfigAndStorageFolders() const
 {
     if (iv_access(CONFIG_FOLDER.c_str(), W_OK) != 0)
         iv_mkdir(CONFIG_FOLDER.c_str(), 0666);
-    if (iv_access(ARTICLE_FOLDER.c_str(), W_OK) != 0)
-        iv_mkdir(ARTICLE_FOLDER.c_str(), 0666);
+    if (iv_access(STORAGE_FOLDER.c_str(), W_OK) != 0)
+        iv_mkdir(STORAGE_FOLDER.c_str(), 0666);
     if (iv_access(ARTICLE_FOLDER.c_str(), W_OK) != 0)
         iv_mkdir(ARTICLE_FOLDER.c_str(), 0666);
     if (iv_access(IMAGE_FOLDER.c_str(), W_OK) != 0)
@@ -226,7 +226,7 @@ void EventHandler::drawSearchResults() const
 std::string EventHandler::createHtmlFromEntry(const zim::Entry &entry) const
 {
     //TODO check for type
-    string storagePath = ARTICLE_FOLDER + entry.getTitle() + ".html";
+    string storagePath = ARTICLE_FOLDER + '/' + entry.getTitle() + ".html";
     Log::writeInfoLog(storagePath);
 
     //TODO create images
