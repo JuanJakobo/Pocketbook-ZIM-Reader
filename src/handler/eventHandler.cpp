@@ -121,7 +121,7 @@ void EventHandler::addArchivesFromStoragePath()
     }
     if(_archives.size() == 0)
     {
-        Message(ICON_ERROR, "Error", "Could not find any .ZIM files. Please place them into the Zim-Reader folder.", 1200);
+        int dialogResult = DialogSynchro(ICON_INFORMATION, "Action", "Could not find any .ZIM files. Please place them into the Zim-Reader folder.", "Close App", NULL, NULL);
         CloseApp();
     }
 }
