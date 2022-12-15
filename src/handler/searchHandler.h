@@ -11,23 +11,36 @@
 
 #include "inkview.h"
 
+#include "listView.h"
+
 #include "archive.h"
 #include "search.h"
+#include "searchModel.h"
+#include "searchViewEntry.h"
 
+#include <memory>
 #include <string>
+#include <future>
 
-class SearchHandler
+class SearchHandler final : public ListView
 {
     public:
-        /**
-         * Defines fonds, sets global Event Handler and starts new content
-         */
+        explicit SearchHandler(const irect &contentRect, const std::vector<zim::Archive> &archives, int page = 1);
 
-        static void drawSearchResults(const std::string &_searchText);
+        void getAndDrawSearchResults(const std::string &searchText);
+
+        SearchEntry& getCurrentEntry() { return getEntry(_selectedEntry); };
+
+
     private:
-        explicit SearchHandler();
+        std::shared_ptr<std::vector<zim::Archive>> _archives;
+        std::unique_ptr<zim::Search> _currentSearch;
 
-        static zim::SearchResultSet searchForText(const std::string& text);
+        SearchEntry& getEntry(int entryID) {return std::dynamic_pointer_cast<SearchViewEntry>(_entries.at(entryID))->getMfEntry(); };
+
+        void searchAndStoreResults(const std::string &searchText);
+        void drawSearchResults(int rangeBegin, int rangeEnd);
+        void deleteCurrentEntries();
 
 };
 #endif
